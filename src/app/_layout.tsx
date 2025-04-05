@@ -1,13 +1,26 @@
-import '../styles/global.css'
+import '@/styles/global.css'
 
 import { Slot } from 'expo-router'
-import { StatusBar } from 'react-native'
+
+import { Loading } from '@/components/loading'
+
+import {
+  Roboto_400Regular,
+  Roboto_500Medium,
+  Roboto_700Bold,
+  useFonts,
+} from '@expo-google-fonts/roboto'
 
 export default function Layout() {
-  return (
-    <>
-      <StatusBar barStyle={'light-content'} />
-      <Slot />
-    </>
-  )
+  const [fontsLoaded] = useFonts({
+    Roboto_700Bold,
+    Roboto_500Medium,
+    Roboto_400Regular,
+  })
+
+  if (!fontsLoaded) {
+    return <Loading />
+  }
+
+  return <Slot />
 }
