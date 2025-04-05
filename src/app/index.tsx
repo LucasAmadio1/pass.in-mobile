@@ -3,9 +3,12 @@ import { Input } from '@/components/input'
 import { colors } from '@/styles/colors'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { Link } from 'expo-router'
+import { useState } from 'react'
 import { Image, StatusBar, View } from 'react-native'
 
 export default function Home() {
+  const [code, setCode] = useState('')
+
   return (
     <View className="flex-1 bg-green-500 items-center justify-center p-8">
       <StatusBar barStyle={'light-content'} />
@@ -24,7 +27,10 @@ export default function Home() {
             color={colors.green[200]}
           />
 
-          <Input.Field placeholder="Código do ingresso" />
+          <Input.Field
+            placeholder="Código do ingresso"
+            onChange={(value) => setCode(value)}
+          />
         </Input>
 
         <Button title="Acessar credencial" />
